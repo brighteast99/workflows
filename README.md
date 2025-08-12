@@ -10,7 +10,7 @@ Reusable GitHub workflows
 
 Send notification using n8n webhook (Needs n8n workflow configured in advance)
 
-### Inputs
+### With
 
 | Name         | Description                                  | Example        | Required |
 | :----------- | :------------------------------------------- | :------------- | :------: |
@@ -18,7 +18,7 @@ Send notification using n8n webhook (Needs n8n workflow configured in advance)
 | **identity** | The identity (Bot) used to send the message. | "github"       |   :o:    |
 | **content**  | Message to send                              | "test message" |   :o:    |
 
-### Secrets used
+### Secrets
 
 | Name                         | Description             |
 | :--------------------------- | :---------------------- |

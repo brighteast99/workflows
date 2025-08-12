@@ -9,3 +9,6 @@ jobs:
       target: discord
       identity: github
       message: test
+    secrets:
+      NOTIFICATION_WEBHOOK_URL: ${{ secrets.NOTIFICATION_WEBHOOK_URL }}
+      WEBHOOK_BASIC_AUTH: ${{ secrets.WEBHOOK_BASIC_AUTH }}
