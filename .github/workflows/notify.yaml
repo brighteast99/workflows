@@ -22,7 +22,7 @@ jobs:
   send-message:
     runs-on: ubuntu-latest
     env:
-      WEBHOOK_BASIC_AUTH: ${{ secrets.auth }}
+      WEBHOOK_AUTH: ${{ secrets.auth }}
       TARGET: ${{inputs.TARGET}}
       IDENTITY: ${{inputs.IDENTITY}}
       MESSAGE: ${{inputs.MESSAGE}}
@@ -31,6 +31,6 @@ jobs:
       - name: Notify
         run: |
           curl -X POST "https://n8n.brighteast.me/webhook/notification?target=$TARGET&identity=$IDENTITY" \
-            -u "$WEBHOOK_BASIC_AUTH" \
+            -u "$WEBHOOK_AUTH" \
             -H "Content-Type: application/json" \
             -d "{\"content\": \"$MESSAGE\"}"
