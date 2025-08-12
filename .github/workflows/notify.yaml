@@ -22,8 +22,7 @@ jobs:
   send-message:
     runs-on: ubuntu-latest
     env:
-      WEBHOOK_URL: ${{secrets.NOTIFICATION_WEBHOOK_URL}}
-      WEBHOOK_BASIC_AUTH: ${{ secrets.WEBHOOK_BASIC_AUTH }}
+      WEBHOOK_BASIC_AUTH: ${{ secrets.auth }}
       TARGET: ${{inputs.TARGET}}
       IDENTITY: ${{inputs.IDENTITY}}
       MESSAGE: ${{inputs.MESSAGE}}
