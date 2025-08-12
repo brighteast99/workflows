@@ -13,6 +13,11 @@ on:
         description: 'Message to send'
         required: true
         type: string
+    secrets:
+      auth:
+        description: 'n8n webhook credentials'
+        required: true
+        type: string
 
 jobs:
   send-message:
@@ -27,7 +32,7 @@ jobs:
     steps:
       - name: Notify
         run: |
-          curl -X POST "$WEBHOOK_URL?target=$TARGET&identity=$IDENTITY" \
+          curl -X POST "https://n8n.brighteast.me/webhook/notification?target=$TARGET&identity=$IDENTITY" \
             -u "$WEBHOOK_BASIC_AUTH" \
             -H "Content-Type: application/json" \
             -d "{\"content\": \"$MESSAGE\"}"
