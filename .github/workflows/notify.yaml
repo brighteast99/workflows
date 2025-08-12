@@ -17,7 +17,6 @@ on:
       auth:
         description: 'n8n webhook credentials'
         required: true
-        type: string
 
 jobs:
   send-message:
