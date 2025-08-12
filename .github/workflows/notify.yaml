@@ -1,0 +1,33 @@
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: 'Where to send the message'
+        required: true
+        type: string
+      identity:
+        description: 'The identity used to send the message.'
+        required: true
+        type: string
+      message:
+        description: 'Message to send'
+        required: true
+        type: string
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+    env:
+      WEBHOOK_URL: ${{secrets.NOTIFICATION_WEBHOOK_URL}}
+      WEBHOOK_BASIC_AUTH: ${{ secrets.WEBHOOK_BASIC_AUTH }}
+      TARGET: ${{inputs.TARGET}}
+      IDENTITY: ${{inputs.IDENTITY}}
+      MESSAGE: ${{inputs.MESSAGE}}
+
+    steps:
+      - name: Notify
+        run: |
+          curl -X POST "$WEBHOOK_URL?target=$TARGET&identity=$IDENTITY" \
+            -u "$WEBHOOK_BASIC_AUTH" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"$MESSAGE\"}"
