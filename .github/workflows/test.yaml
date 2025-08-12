@@ -4,7 +4,7 @@ on:
 
 jobs:
   trigger-workflow:
-    uses: brighteast99/workflows/.github/workflows/notify.yaml@${{ github.event.pull_request.head.ref }}
+    uses: brighteast99/workflows/.github/workflows/notify.yaml@feat/notify
     with:
       target: discord
       identity: github
