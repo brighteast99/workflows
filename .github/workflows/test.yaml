@@ -1,0 +1,13 @@
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  trigger-workflow:
+    uses: brighteast99/workflows/.github/workflows/notify.yaml@feat/notify
+    with:
+      target: discord
+      identity: github
+      message: test
+    secrets:
+      auth: ${{ secrets.WEBHOOK_BASIC_AUTH }}

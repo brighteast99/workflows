@@ -1,0 +1,36 @@
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: 'Where to send the message'
+        required: true
+        type: string
+      identity:
+        description: 'The identity used to send the message.'
+        required: true
+        type: string
+      message:
+        description: 'Message to send'
+        required: true
+        type: string
+    secrets:
+      auth:
+        description: 'n8n webhook credentials'
+        required: true
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+    env:
+      WEBHOOK_AUTH: ${{ secrets.auth }}
+      TARGET: ${{inputs.TARGET}}
+      IDENTITY: ${{inputs.IDENTITY}}
+      MESSAGE: ${{inputs.MESSAGE}}
+
+    steps:
+      - name: Notify
+        run: |
+          curl -X POST "https://n8n.brighteast.me/webhook/notification?target=$TARGET&identity=$IDENTITY" \
+            -u "$WEBHOOK_AUTH" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"$MESSAGE\"}"
